@@ -1,0 +1,3 @@
+metric,value
+Baseline train rows,26048
+"Also reporting marital-status IF spread (max-min subgroup violation_rate, n_pairs >= 100)",

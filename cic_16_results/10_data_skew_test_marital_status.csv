@@ -1,0 +1,8 @@
+marital-status,n_samples,positive_rate
+Married-civ-spouse,2977,0.4505
+Never-married,2181,0.0408
+Divorced,883,0.1166
+Separated,199,0.0804
+Widowed,182,0.0604
+Married-spouse-absent,86,0.0581
+Married-AF-spouse,5,0.6

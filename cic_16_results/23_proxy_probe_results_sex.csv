@@ -1,0 +1,3 @@
+protected_attribute,model,accuracy,macro_f1,roc_auc,notes,delta_vs_majority_accuracy,delta_vs_majority_macro_f1
+sex,majority_baseline,0.668663,0.400718,,Always predict training majority class: Male,0.0,0.0
+sex,logistic_probe,0.736527,0.684208,0.793028,Predict sex from KNN input features only (AUC positive class: Male),0.067864,0.28349

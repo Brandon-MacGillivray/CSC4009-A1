@@ -1,0 +1,5 @@
+protected_attribute,model,accuracy,macro_f1,roc_auc,notes,delta_vs_majority_accuracy,delta_vs_majority_macro_f1
+sex,majority_baseline,0.668663,0.400718,,Always predict training majority class: Male,0.0,0.0
+sex,logistic_probe,0.736527,0.684208,0.793028,Predict sex from KNN input features only (AUC positive class: Male),0.067864,0.28349
+marital-status,majority_baseline,0.457086,0.089628,,Always predict training majority class: Married-civ-spouse,0.0,0.0
+marital-status,logistic_probe,0.632274,0.219729,,Predict marital-status from KNN input features only (not reported (multiclass probe)),0.175188,0.130101

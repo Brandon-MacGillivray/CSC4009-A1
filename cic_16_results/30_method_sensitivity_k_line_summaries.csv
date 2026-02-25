@@ -1,0 +1,4 @@
+k,accuracy,macro_f1,global_if_violation_rate,sex_if_gap_male_minus_female,marital_if_spread_min100
+5,0.8142,0.724,0.4044,0.0758,0.3096
+17,0.8173,0.7146,0.2606,0.059,0.2487
+35,0.8194,0.7095,0.1716,0.0434,0.1599

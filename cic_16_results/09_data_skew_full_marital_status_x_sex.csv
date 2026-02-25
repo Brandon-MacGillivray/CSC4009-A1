@@ -1,0 +1,15 @@
+marital-status x sex,n_samples,positive_rate
+Married-civ-spouse | Male,13319,0.4458
+Never-married | Male,5916,0.0549
+Never-married | Female,4767,0.0348
+Divorced | Female,2672,0.067
+Divorced | Male,1771,0.1604
+Married-civ-spouse | Female,1657,0.455
+Widowed | Female,825,0.0558
+Separated | Female,631,0.0269
+Separated | Male,394,0.1244
+Married-spouse-absent | Male,213,0.108
+Married-spouse-absent | Female,205,0.0537
+Widowed | Male,168,0.2321
+Married-AF-spouse | Female,14,0.4286
+Married-AF-spouse | Male,9,0.4444

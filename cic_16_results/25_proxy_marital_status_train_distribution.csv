@@ -1,0 +1,8 @@
+marital-status,train_count,train_rate
+Married-civ-spouse,11999,0.4606
+Never-married,8502,0.3264
+Divorced,3560,0.1367
+Separated,826,0.0317
+Widowed,811,0.0311
+Married-spouse-absent,332,0.0127
+Married-AF-spouse,18,0.0007

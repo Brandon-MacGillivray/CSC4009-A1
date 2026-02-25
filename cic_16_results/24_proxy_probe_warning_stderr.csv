@@ -1,0 +1,3 @@
+line_no,text
+1,c:\Users\user\miniconda3\envs\sklearn\lib\site-packages\sklearn\linear_model\_logistic.py:1296: FutureWarning: Using the 'liblinear' solver for multiclass classification is deprecated. An error will be raised in 1.8. Either use another solver which supports the multinomial loss or wrap the estimator in a OneVsRestClassifier to keep applying a one-versus-rest scheme.
+2,  warnings.warn(

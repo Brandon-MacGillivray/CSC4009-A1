@@ -1,0 +1,3 @@
+subgroup,n_samples,n_pairs,violation_rate
+Male,4355,47801,0.282337
+Female,2158,15811,0.223326

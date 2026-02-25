@@ -1,0 +1,4 @@
+k,train_rows,accuracy,macro_f1,positive_recall,global_if_violation_rate,global_if_avg_violation,sex_if_male,sex_if_female,sex_if_gap_male_minus_female,marital_if_spread_min100,delta_vs_k17_accuracy,delta_vs_k17_macro_f1,delta_vs_k17_positive_recall,delta_vs_k17_global_if_violation_rate,delta_vs_k17_global_if_avg_violation,delta_vs_k17_sex_if_gap_male_minus_female,delta_vs_k17_marital_if_spread_min100
+5,26048,0.814218,0.724049,0.503827,0.40435,0.07408,0.42905,0.353298,0.075751,0.309602,-0.003071,0.00947,0.052296,0.143702,0.051232,0.01674,0.060874
+17,26048,0.817288,0.714579,0.451531,0.260648,0.022848,0.282337,0.223326,0.059012,0.248728,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+35,26048,0.819438,0.70947,0.424107,0.171565,0.010425,0.187946,0.144583,0.043363,0.159853,0.00215,-0.005109,-0.027423,-0.089083,-0.012423,-0.015649,-0.088875

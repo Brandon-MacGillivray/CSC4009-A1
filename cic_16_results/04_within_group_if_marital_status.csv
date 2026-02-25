@@ -1,0 +1,8 @@
+attribute,subgroup,n_samples,n_pairs,max_violation,avg_violation,violation_rate
+marital-status,Divorced,883,2640,0.396209,0.024547,0.318561
+marital-status,Married-civ-spouse,2977,25074,0.773675,0.028579,0.301508
+marital-status,Never-married,2181,18553,0.601545,0.012216,0.152482
+marital-status,Separated,199,144,0.403079,0.011038,0.145833
+marital-status,Married-spouse-absent,86,14,0.038749,0.005536,0.142857
+marital-status,Widowed,182,358,0.273141,0.00443,0.069832
+marital-status,Married-AF-spouse,5,0,,,

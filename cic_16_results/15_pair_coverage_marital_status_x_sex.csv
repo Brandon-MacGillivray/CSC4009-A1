@@ -1,0 +1,15 @@
+subgroup,n_samples,n_pairs,violation_rate
+Separated | Male,78,19,0.526316
+Married-spouse-absent | Female,45,5,0.4
+Divorced | Female,535,1479,0.359026
+Divorced | Male,348,394,0.317259
+Married-civ-spouse | Male,2628,21062,0.300304
+Married-civ-spouse | Female,349,494,0.289474
+Never-married | Male,1225,5919,0.153404
+Never-married | Female,956,4765,0.146695
+Separated | Female,121,83,0.072289
+Widowed | Female,149,270,0.055556
+Widowed | Male,33,9,0.0
+Married-spouse-absent | Male,41,5,0.0
+Married-AF-spouse | Female,3,0,
+Married-AF-spouse | Male,2,0,

@@ -1,0 +1,68 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=2.54cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{parskip}
+\pagestyle{empty}
+
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.95}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\begin{document}
+
+{\Large \textbf{Individual Fairness}}\\[-0.2em]
+
+\textbf{(1) Details of the analysis structure}
+
+I audited the baseline KNN model using a local individual fairness (IF) test on the fixed test set. I computed predicted probabilities and represented each test instance in the model's preprocessed non-sensitive feature space (same space used for prediction), then built a local nearest-neighbor graph (\texttt{k\_local = 15}) so each person was compared only to similar individuals. For each local pair, I measured an IF violation when the prediction-probability gap exceeded the pair's feature-space distance. I then summarized the same IF metrics at three levels: global, subgroup (\texttt{marital-status}, \texttt{sex}), and intersection (\texttt{marital-status x sex}), while tracking pair coverage (\texttt{n\_pairs}) to judge reliability of subgroup estimates. This IF protocol was used as the baseline for later cause-of-unfairness checks.
+
+\textbf{(2) Quantitative results of the analysis}
+
+\textbf{Global IF summary}
+
+\begin{center}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Metric & Value \\
+\midrule
+Evaluated pairs & 97695 \\
+Violation rate & 0.260648 \\
+Avg violation & 0.022848 \\
+Max violation & 0.773675 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Compact subgroup IF summary (selected rows)}
+
+\begin{center}
+\begin{tabularx}{\linewidth}{@{}lYrrr@{}}
+\toprule
+Attribute & Subgroup & \texttt{n\_pairs} & Viol. rate & Avg viol. \\
+\midrule
+sex & Male & 47801 & 0.282337 & 0.025391 \\
+sex & Female & 15811 & 0.223326 & 0.017215 \\
+marital-status & Divorced & 2640 & 0.318561 & 0.024547 \\
+marital-status & Married-civ-spouse & 25074 & 0.301508 & 0.028579 \\
+marital-status & Never-married & 18553 & 0.152482 & 0.012216 \\
+marital-status & Widowed & 358 & 0.069832 & 0.004430 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{-0.2em}
+Intersectional summaries (full table omitted for space) showed additional variation, e.g., \texttt{Divorced - Female} (violation rate 0.359026, \texttt{n\_pairs}=1479) and \texttt{Separated - Male} (violation rate 0.526316, \texttt{n\_pairs}=19), with some small groups having very low or zero pair coverage.
+
+\textbf{(3) Observations, inferences and insights from the analysis worth noting}
+
+The IF audit shows non-trivial local fairness violations under the chosen similarity-based test, with violations occurring across many local comparisons rather than only rare outliers. The subgroup summaries indicate that local prediction consistency is not uniform across the test population: both \texttt{sex} and \texttt{marital-status} groups differ in violation rate and average violation. The intersectional view adds useful detail, but some intersection groups have very small \texttt{n\_pairs}, so extreme values in those rows should be interpreted cautiously. Overall, this IF analysis is most useful as a baseline diagnostic: it identifies where local inconsistencies are concentrated, but it does not by itself explain why they occur, which motivates the later cause-of-unfairness analyses.
+
+\textit{Appendix note (optional):} Full subgroup and intersection tables are provided in the appendix/supplementary results.
+
+\end{document}

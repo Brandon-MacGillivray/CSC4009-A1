@@ -1,0 +1,8 @@
+subgroup,n_samples,n_pairs,violation_rate
+Divorced,883,2640,0.318561
+Married-civ-spouse,2977,25074,0.301508
+Never-married,2181,18553,0.152482
+Separated,199,144,0.145833
+Married-spouse-absent,86,14,0.142857
+Widowed,182,358,0.069832
+Married-AF-spouse,5,0,

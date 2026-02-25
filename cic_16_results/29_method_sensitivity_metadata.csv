@@ -1,0 +1,5 @@
+metric,value
+"Fixed data split, preprocessing, weights","'uniform', p=2, leaf_size=20"
+Fixed fairness protocol,local IF with k_local = 15
+"Also reporting marital-status IF spread (max-min subgroup violation_rate, n_pairs >= 100)",
+k values,"[5, 17, 35]"

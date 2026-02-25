@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Census Income Classifier 16 Results (No Code)</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --paper: #ffffff;
+      --ink: #1f2430;
+      --muted: #667085;
+      --border: #dde3ee;
+      --accent: #0f5cc0;
+      --stdout-bg: #f8fafc;
+      --stderr-bg: #fff6f6;
+      --stderr-border: #ef9a9a;
+      --code-bg: #f3f4f6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #f3f6fb 0%, #f7f8fc 180px, #f6f7fb 100%);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.55;
+    }
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 20px 48px;
+    }
+    .hero {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 24px rgba(16, 24, 40, 0.05);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin: 0 0 6px;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 1.35rem;
+      line-height: 1.25;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .cell {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 12px 0;
+      box-shadow: 0 4px 14px rgba(16, 24, 40, 0.03);
+    }
+    .markdown-cell h1, .markdown-cell h2, .markdown-cell h3, .markdown-cell h4 {
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      line-height: 1.25;
+      margin-top: 0;
+      color: #182230;
+    }
+    .markdown-cell h1 { font-size: 1.45rem; margin-bottom: 0.6rem; }
+    .markdown-cell h2 { font-size: 1.2rem; margin-bottom: 0.55rem; }
+    .markdown-cell h3 { font-size: 1.05rem; margin-bottom: 0.45rem; }
+    .markdown-cell p { margin: 0.45rem 0; }
+    .markdown-cell ul, .markdown-cell ol { margin: 0.35rem 0 0.55rem 1.2rem; padding: 0; }
+    .markdown-cell blockquote {
+      margin: 0.6rem 0;
+      padding: 0.4rem 0.8rem;
+      border-left: 3px solid #c6d4eb;
+      background: #f8fbff;
+      color: #334155;
+    }
+    .markdown-cell code {
+      font-family: Consolas, "Courier New", monospace;
+      background: var(--code-bg);
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+    .markdown-cell pre.md-code {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 12px;
+      overflow: auto;
+      margin: 0.6rem 0;
+    }
+    .markdown-cell pre.md-code code { background: transparent; padding: 0; color: inherit; }
+    .output-cell { padding: 12px 14px; }
+    .result {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 8px 0;
+      overflow: hidden;
+      background: var(--stdout-bg);
+    }
+    .result.stderr {
+      background: var(--stderr-bg);
+      border-color: var(--stderr-border);
+    }
+    .result-label {
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #475467;
+      background: rgba(255,255,255,0.75);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 6px 10px;
+    }
+    .result pre {
+      margin: 0;
+      padding: 12px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      font-family: Consolas, "Courier New", monospace;
+    }
+    .result.rich { padding: 10px 12px; }
+    .result.image { padding: 10px 12px; text-align: center; }
+    .result.image img { max-width: 100%; height: auto; border-radius: 6px; }
+    .footer {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 16px;
+      padding: 4px 2px;
+    }
+    @media (max-width: 700px) {
+      .page { padding: 14px 10px 30px; }
+      .cell, .hero { border-radius: 10px; padding: 12px; }
+      .result pre { font-size: 0.84rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>Census Income Classifier 16 Results (No Code)</h1>
+      <p>Generated from census-income-classifier_16.ipynb on 2026-02-25 12:26:43. Code cells are hidden; markdown and outputs are preserved.</p>
+    </header>
+    <section class="cell markdown-cell" data-cell-index="0"><h1>Census Income Classifier: KNN + Individual Fairness Analysis</h1>
+<p>This notebook trains a KNN classifier on the Adult Census Income dataset and then analyzes fairness using a local individual fairness (IF) audit. It also explores likely causes of unfairness through data skew checks, a simple data intervention, proxy-signal probes, and a method sensitivity study.</p>
+<p>Run the notebook top-to-bottom. The configuration block near the top centralizes the main experiment settings used throughout the analysis.</p></section><section class="cell markdown-cell" data-cell-index="1"><h2>Block 1: Imports</h2>
+<p>Load the Python libraries used for data handling, preprocessing, model training, and baseline evaluation metrics.</p></section><section class="cell markdown-cell" data-cell-index="3"><h2>Block 2: Target and Sensitive Attributes</h2>
+<p>Define the prediction target and the sensitive attributes. The sensitive attributes are excluded from model training features and kept separately for fairness analysis and subgroup reporting.</p></section><section class="cell markdown-cell" data-cell-index="5"><h2>Block 3: Central Configuration</h2>
+<p>Set the shared constants used across the notebook: train/test split settings, baseline KNN hyperparameters, fairness audit parameters, experiment seeds, proxy-probe settings, and method-sensitivity sweep values.</p>
+<p>Edit this block first if you want to rerun the notebook with different settings.</p></section><section class="cell markdown-cell" data-cell-index="7"><h2>Block 4: Load Data and Create the Train/Test Split</h2>
+<p>Read <code>adult.data.csv</code>, build the non-sensitive feature matrix <code>X</code>, extract the target <code>y</code>, and preserve sensitive columns for later fairness diagnostics. Then create a stratified train/test split using the configuration values.</p></section><section class="cell markdown-cell" data-cell-index="9"><h2>Block 5: Build the Preprocessing Pipeline</h2>
+<p>Create separate preprocessing steps for numeric and categorical columns (imputation + scaling / one-hot encoding) and combine them into a single <code>ColumnTransformer</code> used by the model pipeline.</p></section><section class="cell markdown-cell" data-cell-index="11"><h2>Block 6: Train the Baseline KNN Model</h2>
+<p>Instantiate the baseline KNN classifier with the configured hyperparameters, fit the full pipeline, and print standard classification metrics (confusion matrix and classification report) on the test set.</p></section><section class="cell output-cell" data-cell-index="12"><div class="result stdout"><div class="result-label">stdout</div><pre>[[4615  330]
+ [ 860  708]]
+              precision    recall  f1-score   support
+
+       &lt;=50K       0.84      0.93      0.89      4945
+        &gt;50K       0.68      0.45      0.54      1568
+
+    accuracy                           0.82      6513
+   macro avg       0.76      0.69      0.71      6513
+weighted avg       0.80      0.82      0.80      6513
+
+</pre></div></section><section class="cell markdown-cell" data-cell-index="13"><h2>Section A: Individual Fairness Analysis</h2>
+<p>This section measures local individual fairness on the test set and then breaks the results down by subgroup and intersectional subgroup.</p></section><section class="cell markdown-cell" data-cell-index="14"><h3>Block 7: Global IF Audit (Local Pair Graph)</h3>
+<p>Compute predicted probabilities for the positive class, form local nearest-neighbor pairs in the preprocessed non-sensitive feature space, normalize distances, and calculate pairwise IF violations using:</p>
+<p><code>max(0, |p_i - p_j| - d_ij)</code></p>
+<p>The output summarizes the overall (global) fairness behavior across all evaluated local pairs.</p></section><section class="cell output-cell" data-cell-index="15"><div class="result stdout"><div class="result-label">stdout</div><pre>Individual fairness (local) summary
+- evaluated pairs: 97695
+- max_violation: 0.773675
+- avg_violation: 0.022848
+- violation_rate: 0.260648
+</pre></div></section><section class="cell markdown-cell" data-cell-index="16"><h3>Block 8: Subgroup and Intersection IF Summaries</h3>
+<p>Reuse the pair-level fairness outputs (<code>rows</code>, <code>cols</code>, <code>violations</code>) to calculate within-group IF statistics for <code>marital-status</code>, <code>sex</code>, and the <code>marital-status x sex</code> intersection. This helps identify which groups have higher local IF violation rates.</p></section><section class="cell output-cell" data-cell-index="17"><div class="result stdout"><div class="result-label">stdout</div><pre>
+Within-group IF by marital-status
+     attribute              subgroup  n_samples  n_pairs  max_violation  avg_violation  violation_rate
+marital-status              Divorced        883     2640       0.396209       0.024547        0.318561
+marital-status    Married-civ-spouse       2977    25074       0.773675       0.028579        0.301508
+marital-status         Never-married       2181    18553       0.601545       0.012216        0.152482
+marital-status             Separated        199      144       0.403079       0.011038        0.145833
+marital-status Married-spouse-absent         86       14       0.038749       0.005536        0.142857
+marital-status               Widowed        182      358       0.273141       0.004430        0.069832
+marital-status     Married-AF-spouse          5        0            NaN            NaN             NaN
+
+Within-group IF by sex
+attribute subgroup  n_samples  n_pairs  max_violation  avg_violation  violation_rate
+      sex     Male       4355    47801       0.773675       0.025391        0.282337
+      sex   Female       2158    15811       0.609399       0.017215        0.223326
+
+Within-group IF by (marital-status, sex) intersection
+           attribute                       subgroup  n_samples  n_pairs  max_violation  avg_violation  violation_rate
+marital-status x sex               Separated | Male         78       19       0.403079       0.049824        0.526316
+marital-status x sex Married-spouse-absent | Female         45        5       0.038749       0.015500        0.400000
+marital-status x sex              Divorced | Female        535     1479       0.365531       0.027110        0.359026
+marital-status x sex                Divorced | Male        348      394       0.396209       0.027600        0.317259
+marital-status x sex      Married-civ-spouse | Male       2628    21062       0.773675       0.028355        0.300304
+marital-status x sex    Married-civ-spouse | Female        349      494       0.549054       0.027913        0.289474
+marital-status x sex           Never-married | Male       1225     5919       0.462288       0.012138        0.153404
+marital-status x sex         Never-married | Female        956     4765       0.574189       0.011964        0.146695
+marital-status x sex             Separated | Female        121       83       0.092328       0.004238        0.072289
+marital-status x sex               Widowed | Female        149      270       0.273141       0.004100        0.055556
+marital-status x sex                 Widowed | Male         33        9       0.000000       0.000000        0.000000
+marital-status x sex   Married-spouse-absent | Male         41        5       0.000000       0.000000        0.000000
+marital-status x sex     Married-AF-spouse | Female          3        0            NaN            NaN             NaN
+marital-status x sex       Married-AF-spouse | Male          2        0            NaN            NaN             NaN
+</pre></div></section><section class="cell markdown-cell" data-cell-index="18"><h2>Section B: Cause of Unfairness (Data Diagnostics)</h2>
+<p>This section checks whether representation imbalance and label-rate differences in the data may explain some of the observed subgroup fairness patterns.</p></section><section class="cell markdown-cell" data-cell-index="19"><h3>Block 9: Data Skew Diagnostics (No Retraining)</h3>
+<p>Summarize subgroup counts and positive-label rates for the full dataset and the test split, then compare them with pair coverage in the local IF audit graph. This is a lightweight diagnostic step that does not retrain the model.</p></section><section class="cell output-cell" data-cell-index="20"><div class="result stdout"><div class="result-label">stdout</div><pre>
+Data skew diagnostics (full dataset)
+
+Counts and positive rate by marital-status
+                       n_samples  positive_rate
+marital-status                                 
+Married-civ-spouse         14976         0.4468
+Never-married              10683         0.0460
+Divorced                    4443         0.1042
+Separated                   1025         0.0644
+Widowed                      993         0.0856
+Married-spouse-absent        418         0.0813
+Married-AF-spouse             23         0.4348
+
+Counts and positive rate by sex
+        n_samples  positive_rate
+sex                             
+Male        21790         0.3057
+Female      10771         0.1095
+
+Counts and positive rate by marital-status x sex
+                                n_samples  positive_rate
+marital-status x sex                                    
+Married-civ-spouse | Male           13319         0.4458
+Never-married | Male                 5916         0.0549
+Never-married | Female               4767         0.0348
+Divorced | Female                    2672         0.0670
+Divorced | Male                      1771         0.1604
+Married-civ-spouse | Female          1657         0.4550
+Widowed | Female                      825         0.0558
+Separated | Female                    631         0.0269
+Separated | Male                      394         0.1244
+Married-spouse-absent | Male          213         0.1080
+Married-spouse-absent | Female        205         0.0537
+Widowed | Male                        168         0.2321
+Married-AF-spouse | Female             14         0.4286
+Married-AF-spouse | Male                9         0.4444
+
+Data skew diagnostics (test split)
+
+Counts and positive rate by marital-status
+                       n_samples  positive_rate
+marital-status                                 
+Married-civ-spouse          2977         0.4505
+Never-married               2181         0.0408
+Divorced                     883         0.1166
+Separated                    199         0.0804
+Widowed                      182         0.0604
+Married-spouse-absent         86         0.0581
+Married-AF-spouse              5         0.6000
+
+Counts and positive rate by sex
+        n_samples  positive_rate
+sex                             
+Male         4355         0.3038
+Female       2158         0.1135
+
+Counts and positive rate by marital-status x sex
+                                n_samples  positive_rate
+marital-status x sex                                    
+Married-civ-spouse | Male            2628         0.4486
+Never-married | Male                 1225         0.0473
+Never-married | Female                956         0.0324
+Divorced | Female                     535         0.0766
+Married-civ-spouse | Female           349         0.4642
+Divorced | Male                       348         0.1782
+Widowed | Female                      149         0.0336
+Separated | Female                    121         0.0248
+Separated | Male                       78         0.1667
+Married-spouse-absent | Female         45         0.0444
+Married-spouse-absent | Male           41         0.0732
+Widowed | Male                         33         0.1818
+Married-AF-spouse | Female              3         0.3333
+Married-AF-spouse | Male                2         1.0000
+
+Local-pair coverage in the current IF audit (test split)
+
+Pair coverage summary for marital-status
+             subgroup  n_samples  n_pairs  violation_rate
+             Divorced        883     2640        0.318561
+   Married-civ-spouse       2977    25074        0.301508
+        Never-married       2181    18553        0.152482
+            Separated        199      144        0.145833
+Married-spouse-absent         86       14        0.142857
+              Widowed        182      358        0.069832
+    Married-AF-spouse          5        0             NaN
+
+Pair coverage summary for sex
+subgroup  n_samples  n_pairs  violation_rate
+    Male       4355    47801        0.282337
+  Female       2158    15811        0.223326
+
+Pair coverage summary for marital-status x sex
+                      subgroup  n_samples  n_pairs  violation_rate
+              Separated | Male         78       19        0.526316
+Married-spouse-absent | Female         45        5        0.400000
+             Divorced | Female        535     1479        0.359026
+               Divorced | Male        348      394        0.317259
+     Married-civ-spouse | Male       2628    21062        0.300304
+   Married-civ-spouse | Female        349      494        0.289474
+          Never-married | Male       1225     5919        0.153404
+        Never-married | Female        956     4765        0.146695
+            Separated | Female        121       83        0.072289
+              Widowed | Female        149      270        0.055556
+                Widowed | Male         33        9        0.000000
+  Married-spouse-absent | Male         41        5        0.000000
+    Married-AF-spouse | Female          3        0             NaN
+      Married-AF-spouse | Male          2        0             NaN
+</pre></div></section><section class="cell markdown-cell" data-cell-index="21"><h2>Section C: Cause of Unfairness (Data Intervention)</h2>
+<p>This section tests a simple intervention on the training data to see how fairness and performance metrics respond.</p></section><section class="cell markdown-cell" data-cell-index="22"><h3>Block 10: Sex-Balanced Undersampling Experiment</h3>
+<p>Create sex-balanced training subsets by undersampling the majority sex group (across multiple random seeds), retrain the same KNN pipeline, and compare performance plus fairness metrics against the baseline model.</p></section><section class="cell output-cell" data-cell-index="23"><div class="result stdout"><div class="result-label">stdout</div><pre>Sex-balanced undersampling experiment (3 seeds)
+- Baseline train rows: 26048
+- Also reporting marital-status IF spread (max-min subgroup violation_rate, n_pairs &gt;= 100)
+
+Seed 42: sex counts in original train = {&#x27;Male&#x27;: 17435, &#x27;Female&#x27;: 8613}; selected per sex = 8613; selected rows = 17226
+
+Seed 43: sex counts in original train = {&#x27;Male&#x27;: 17435, &#x27;Female&#x27;: 8613}; selected per sex = 8613; selected rows = 17226
+
+Seed 44: sex counts in original train = {&#x27;Male&#x27;: 17435, &#x27;Female&#x27;: 8613}; selected per sex = 8613; selected rows = 17226
+
+Baseline vs 3 sex-balanced runs
+              experiment  seed  train_rows  accuracy  macro_f1  positive_recall  global_if_violation_rate  global_if_avg_violation  sex_if_male  sex_if_female  sex_if_gap_male_minus_female  marital_if_spread_min100  delta_accuracy  delta_macro_f1  delta_positive_recall  delta_global_if_violation_rate  delta_global_if_avg_violation  delta_sex_if_gap_male_minus_female  delta_marital_if_spread_min100
+  baseline_current_train   NaN       26048  0.817288  0.714579         0.451531                  0.260648                 0.022848     0.282337       0.223326                      0.059012                  0.248728        0.000000        0.000000               0.000000                        0.000000                       0.000000                            0.000000                        0.000000
+sex_balanced_undersample  42.0       17226  0.814678  0.694011         0.387755                  0.232407                 0.018398     0.251993       0.197036                      0.054957                  0.236296       -0.002610       -0.020568              -0.063776                       -0.028241                      -0.004451                           -0.004054                       -0.012432
+sex_balanced_undersample  43.0       17226  0.816981  0.694987         0.383291                  0.235468                 0.018574     0.255084       0.204877                      0.050207                  0.221320       -0.000307       -0.019592              -0.068240                       -0.025180                      -0.004274                           -0.008805                       -0.027408
+sex_balanced_undersample  44.0       17226  0.816367  0.692367         0.376913                  0.231435                 0.017485     0.253416       0.195882                      0.057534                  0.192096       -0.000921       -0.022212              -0.074617                       -0.029213                      -0.005363                           -0.001477                       -0.056632
+
+Sex-balanced runs (3 seeds) summary: mean / std
+      accuracy  macro_f1  positive_recall  global_if_violation_rate  global_if_avg_violation  sex_if_gap_male_minus_female  marital_if_spread_min100  delta_accuracy  delta_macro_f1  delta_positive_recall  delta_global_if_violation_rate  delta_global_if_avg_violation  delta_sex_if_gap_male_minus_female  delta_marital_if_spread_min100
+mean  0.816009  0.693788         0.382653                  0.233103                 0.018152                      0.054233                  0.216571       -0.001279       -0.020791              -0.068878                       -0.027545                      -0.004696                           -0.004779                       -0.032157
+std   0.001193  0.001324         0.005449                  0.002105                 0.000585                      0.003717                  0.022480        0.001193        0.001324               0.005449                        0.002105                       0.000585                            0.003717                        0.022480
+</pre></div></section><section class="cell markdown-cell" data-cell-index="24"><h2>Section D: Cause of Unfairness (Proxy Signal)</h2>
+<p>This section checks whether the model inputs still contain strong signals for protected attributes even after sensitive columns are removed.</p></section><section class="cell markdown-cell" data-cell-index="25"><h3>Block 11: Proxy-Signal Probe Models</h3>
+<p>Train simple logistic-regression probes to predict <code>sex</code> and <code>marital-status</code> from the non-sensitive features used by the KNN model. If the probes outperform majority baselines, proxy signal is likely present in the retained features.</p></section><section class="cell output-cell" data-cell-index="26"><div class="result stdout"><div class="result-label">stdout</div><pre>Proxy signal check (protected attributes = sex and marital-status)
+- Question: How predictable are the selected protected attributes from the non-sensitive features used by the KNN model?
+- Interpretation: If probes substantially beat majority baselines, proxy signal is present.
+
+Train distribution (sex)
+        train_count  train_rate
+sex                            
+Male          17435      0.6693
+Female         8613      0.3307
+
+Test distribution (sex)
+        test_count  test_rate
+sex                          
+Male          4355     0.6687
+Female        2158     0.3313
+
+Proxy probe results (sex from KNN input features)
+protected_attribute             model  accuracy  macro_f1  roc_auc                                                               notes  delta_vs_majority_accuracy  delta_vs_majority_macro_f1
+                sex majority_baseline  0.668663  0.400718      NaN                        Always predict training majority class: Male                    0.000000                     0.00000
+                sex    logistic_probe  0.736527  0.684208 0.793028 Predict sex from KNN input features only (AUC positive class: Male)                    0.067864                     0.28349
+</pre></div>
+<div class="result stderr"><div class="result-label">stderr</div><pre>c:\Users\user\miniconda3\envs\sklearn\lib\site-packages\sklearn\linear_model\_logistic.py:1296: FutureWarning: Using the &#x27;liblinear&#x27; solver for multiclass classification is deprecated. An error will be raised in 1.8. Either use another solver which supports the multinomial loss or wrap the estimator in a OneVsRestClassifier to keep applying a one-versus-rest scheme.
+  warnings.warn(
+</pre></div>
+<div class="result stdout"><div class="result-label">stdout</div><pre>
+Train distribution (marital-status)
+                       train_count  train_rate
+marital-status                                
+Married-civ-spouse           11999      0.4606
+Never-married                 8502      0.3264
+Divorced                      3560      0.1367
+Separated                      826      0.0317
+Widowed                        811      0.0311
+Married-spouse-absent          332      0.0127
+Married-AF-spouse               18      0.0007
+
+Test distribution (marital-status)
+                       test_count  test_rate
+marital-status                              
+Married-civ-spouse           2977     0.4571
+Never-married                2181     0.3349
+Divorced                      883     0.1356
+Separated                     199     0.0306
+Widowed                       182     0.0279
+Married-spouse-absent          86     0.0132
+Married-AF-spouse               5     0.0008
+
+Proxy probe results (marital-status from KNN input features)
+protected_attribute             model  accuracy  macro_f1  roc_auc                                                                                 notes  delta_vs_majority_accuracy  delta_vs_majority_macro_f1
+     marital-status majority_baseline  0.457086  0.089628      NaN                            Always predict training majority class: Married-civ-spouse                    0.000000                    0.000000
+     marital-status    logistic_probe  0.632274  0.219729      NaN Predict marital-status from KNN input features only (not reported (multiclass probe))                    0.175188                    0.130101
+
+Combined proxy probe results (sex + marital-status)
+protected_attribute             model  accuracy  macro_f1  roc_auc                                                                                 notes  delta_vs_majority_accuracy  delta_vs_majority_macro_f1
+                sex majority_baseline  0.668663  0.400718      NaN                                          Always predict training majority class: Male                    0.000000                    0.000000
+                sex    logistic_probe  0.736527  0.684208 0.793028                   Predict sex from KNN input features only (AUC positive class: Male)                    0.067864                    0.283490
+     marital-status majority_baseline  0.457086  0.089628      NaN                            Always predict training majority class: Married-civ-spouse                    0.000000                    0.000000
+     marital-status    logistic_probe  0.632274  0.219729      NaN Predict marital-status from KNN input features only (not reported (multiclass probe))                    0.175188                    0.130101
+</pre></div></section><section class="cell markdown-cell" data-cell-index="27"><h2>Section E: Cause of Unfairness (Method Sensitivity)</h2>
+<p>This section isolates the effect of the KNN method choice by varying only <code>k</code> while keeping the data split, preprocessing, and fairness audit protocol fixed.</p></section><section class="cell markdown-cell" data-cell-index="28"><h3>Block 12: Method Sensitivity (Vary KNN <code>k</code>)</h3>
+<p>Train KNN models for a small set of <code>k</code> values, evaluate performance and fairness under the same local IF protocol, and compare all runs to a configured baseline <code>k</code>. This highlights fairness-performance tradeoffs caused by the model setting itself.</p></section><section class="cell output-cell" data-cell-index="29"><div class="result stdout"><div class="result-label">stdout</div><pre>Minimal method investigation: vary only k (data fixed)
+- Fixed data split, preprocessing, weights=&#x27;uniform&#x27;, p=2, leaf_size=20
+- Fixed fairness protocol: local IF with k_local = 15
+- Also reporting marital-status IF spread (max-min subgroup violation_rate, n_pairs &gt;= 100)
+- k values: [5, 17, 35]
+k=5: acc=0.8142, macro_f1=0.7240, IF_violation_rate=0.4044, sex_gap=0.0758, marital_spread=0.3096
+k=17: acc=0.8173, macro_f1=0.7146, IF_violation_rate=0.2606, sex_gap=0.0590, marital_spread=0.2487
+k=35: acc=0.8194, macro_f1=0.7095, IF_violation_rate=0.1716, sex_gap=0.0434, marital_spread=0.1599
+
+Method sensitivity summary (vary k only; baseline for deltas = k=17)
+ k  train_rows  accuracy  macro_f1  positive_recall  global_if_violation_rate  global_if_avg_violation  sex_if_male  sex_if_female  sex_if_gap_male_minus_female  marital_if_spread_min100  delta_vs_k17_accuracy  delta_vs_k17_macro_f1  delta_vs_k17_positive_recall  delta_vs_k17_global_if_violation_rate  delta_vs_k17_global_if_avg_violation  delta_vs_k17_sex_if_gap_male_minus_female  delta_vs_k17_marital_if_spread_min100
+ 5       26048  0.814218  0.724049         0.503827                  0.404350                 0.074080     0.429050       0.353298                      0.075751                  0.309602              -0.003071               0.009470                      0.052296                               0.143702                              0.051232                                   0.016740                               0.060874
+17       26048  0.817288  0.714579         0.451531                  0.260648                 0.022848     0.282337       0.223326                      0.059012                  0.248728               0.000000               0.000000                      0.000000                               0.000000                              0.000000                                   0.000000                               0.000000
+35       26048  0.819438  0.709470         0.424107                  0.171565                 0.010425     0.187946       0.144583                      0.043363                  0.159853               0.002150              -0.005109                     -0.027423                              -0.089083                             -0.012423                                  -0.015649                              -0.088875
+</pre></div></section>
+    <div class="footer">Visible sections rendered: 25. Output blocks rendered: 9.</div>
+  </main>
+</body>
+</html>

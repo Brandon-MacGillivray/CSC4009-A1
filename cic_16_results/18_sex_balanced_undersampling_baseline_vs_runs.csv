@@ -1,0 +1,5 @@
+experiment,seed,train_rows,accuracy,macro_f1,positive_recall,global_if_violation_rate,global_if_avg_violation,sex_if_male,sex_if_female,sex_if_gap_male_minus_female,marital_if_spread_min100,delta_accuracy,delta_macro_f1,delta_positive_recall,delta_global_if_violation_rate,delta_global_if_avg_violation,delta_sex_if_gap_male_minus_female,delta_marital_if_spread_min100
+baseline_current_train,,26048,0.817288,0.714579,0.451531,0.260648,0.022848,0.282337,0.223326,0.059012,0.248728,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+sex_balanced_undersample,42.0,17226,0.814678,0.694011,0.387755,0.232407,0.018398,0.251993,0.197036,0.054957,0.236296,-0.00261,-0.020568,-0.063776,-0.028241,-0.004451,-0.004054,-0.012432
+sex_balanced_undersample,43.0,17226,0.816981,0.694987,0.383291,0.235468,0.018574,0.255084,0.204877,0.050207,0.22132,-0.000307,-0.019592,-0.06824,-0.02518,-0.004274,-0.008805,-0.027408
+sex_balanced_undersample,44.0,17226,0.816367,0.692367,0.376913,0.231435,0.017485,0.253416,0.195882,0.057534,0.192096,-0.000921,-0.022212,-0.074617,-0.029213,-0.005363,-0.001477,-0.056632

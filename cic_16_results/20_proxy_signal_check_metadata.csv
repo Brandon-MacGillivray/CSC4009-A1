@@ -1,0 +1,3 @@
+metric,value
+Question,How predictable are the selected protected attributes from the non-sensitive features used by the KNN model?
+Interpretation,"If probes substantially beat majority baselines, proxy signal is present."

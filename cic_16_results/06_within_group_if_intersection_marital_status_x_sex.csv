@@ -1,0 +1,15 @@
+attribute,subgroup,n_samples,n_pairs,max_violation,avg_violation,violation_rate
+marital-status x sex,Separated | Male,78,19,0.403079,0.049824,0.526316
+marital-status x sex,Married-spouse-absent | Female,45,5,0.038749,0.0155,0.4
+marital-status x sex,Divorced | Female,535,1479,0.365531,0.02711,0.359026
+marital-status x sex,Divorced | Male,348,394,0.396209,0.0276,0.317259
+marital-status x sex,Married-civ-spouse | Male,2628,21062,0.773675,0.028355,0.300304
+marital-status x sex,Married-civ-spouse | Female,349,494,0.549054,0.027913,0.289474
+marital-status x sex,Never-married | Male,1225,5919,0.462288,0.012138,0.153404
+marital-status x sex,Never-married | Female,956,4765,0.574189,0.011964,0.146695
+marital-status x sex,Separated | Female,121,83,0.092328,0.004238,0.072289
+marital-status x sex,Widowed | Female,149,270,0.273141,0.0041,0.055556
+marital-status x sex,Widowed | Male,33,9,0.0,0.0,0.0
+marital-status x sex,Married-spouse-absent | Male,41,5,0.0,0.0,0.0
+marital-status x sex,Married-AF-spouse | Female,3,0,,,
+marital-status x sex,Married-AF-spouse | Male,2,0,,,
